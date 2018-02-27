@@ -10,11 +10,6 @@ namespace DynacomAutoTaskWebService
         public static void Register(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{databaseName}/{controller}/{action}/{taskGuid}",
-                defaults: new { taskGuid = RouteParameter.Optional }
-            );
         }
     }
 }

@@ -17,9 +17,9 @@ namespace DynacomAutoTaskWebService
         {
             return "metadata=res://*/DynacomDataModel.csdl|res://*/DynacomDataModel.ssdl|res://*/DynacomDataModel.msl;" +
                 "provider=System.Data.SqlClient;provider connection string=" +
-                    "\"data source=" + Properties.Settings.Default.DataSource + 
-                    ";initial catalog=" + database + 
-                    ";integrated security=True;MultipleActiveResultSets=True;App=DynacomAutoTaskWebService\"";
+                "\"data source=" + Properties.Settings.Default.DataSource + 
+                ";initial catalog=" + database + 
+                ";integrated security=True;MultipleActiveResultSets=True;App=DynacomAutoTaskWebService\"";
         }
     }
 }

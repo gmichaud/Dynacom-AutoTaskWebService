@@ -10,9 +10,11 @@ using System.Web.Http;
 
 namespace DynacomAutoTaskWebService.Controllers
 {
+    [RoutePrefix("api/{databaseName}/AutoTask")]
     [Authorize]
     public class AutoTaskController : ApiController
     {
+        [Route("List")]
         [HttpGet]
         public IEnumerable<Models.AutoTask> List(string databaseName)
         {
@@ -25,6 +27,7 @@ namespace DynacomAutoTaskWebService.Controllers
             }
         }
 
+        [Route("Run/{taskGuid}")]
         [HttpPost]
         public HttpResponseMessage Run(string databaseName, Guid taskGuid, [FromBody]IDictionary<string, string> properties)
         {
