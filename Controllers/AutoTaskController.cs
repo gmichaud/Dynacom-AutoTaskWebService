@@ -14,10 +14,10 @@ namespace DynacomAutoTaskWebService.Controllers
     public class AutoTaskController : ApiController
     {
         [HttpGet]
-        public IEnumerable<Models.AutoTask> List()
+        public IEnumerable<Models.AutoTask> List(string databaseName)
         {
-            using (var context = new DynacomDataContext())
-            { 
+            using (var context = new DynacomDataContext(DynacomDataContext.GetConnectionString(databaseName)))
+            {
                 foreach (var task in context.DynaAutoTasks.Where(t=>(t.IsSystem == false || t.IsSystem == null) && t.AvailableToAutoMan == true))
                 {
                     yield return new Models.AutoTask() { TaskGuid = task.GUID, Name = task.Name };
@@ -26,14 +26,14 @@ namespace DynacomAutoTaskWebService.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Run(Guid id, [FromBody]IDictionary<string, string> properties)
+        public HttpResponseMessage Run(string databaseName, Guid taskGuid, [FromBody]IDictionary<string, string> properties)
         {
-            using (var context = new DynacomDataContext())
+            using (var context = new DynacomDataContext(DynacomDataContext.GetConnectionString(databaseName)))
             {
-                var task = context.DynaAutoTasks.Where(t => t.GUID == id).SingleOrDefault();
+                var task = context.DynaAutoTasks.Where(t => t.GUID == taskGuid).SingleOrDefault();
                 if (task == null)
                 {
-                    return Request.CreateResponse<string>(HttpStatusCode.NotFound, $"Task {id} does not exist.");
+                    return Request.CreateResponse<string>(HttpStatusCode.NotFound, $"Task {taskGuid} does not exist.");
                 }
                 else
                 {
@@ -43,7 +43,7 @@ namespace DynacomAutoTaskWebService.Controllers
                         var messages = new List<Models.Message>();
 
                         var principal = Request.GetRequestContext().Principal as DynacomPrincipal;
-                        Dynacom.Helper.RunAutoTask(context.Database.Connection.DataSource, context.Database.Connection.Database, principal.Username, principal.Password, task.ID, properties, errors, messages);
+                        Dynacom.Helper.RunAutoTask(Properties.Settings.Default.DataSource, databaseName, principal.Username, principal.Password, task.ID, properties, errors, messages);
                         return Request.CreateResponse<Models.RunTaskResponse>(errors.Count > 0 ? HttpStatusCode.InternalServerError : HttpStatusCode.OK, new Models.RunTaskResponse { Errors = errors, Messages = messages });
                     }
                     catch (Exception ex)
