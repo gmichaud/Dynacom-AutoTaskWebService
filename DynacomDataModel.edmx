@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DynacomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DynaAutoTasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsSystem" Type="bit" />
+          <Property Name="Name" Type="text" />
+          <Property Name="Descr" Type="text" />
+          <Property Name="Category" Type="text" />
+          <Property Name="RecordHandling" Type="int" />
+          <Property Name="AvailableToAutoMan" Type="bit" />
+          <Property Name="DataObjectID" Type="varchar" MaxLength="100" />
+          <Property Name="Actions" Type="text" />
+          <Property Name="Owner" Type="varchar" MaxLength="128" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="128" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="128" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="Query" Type="text" />
+          <Property Name="ProcessRecords" Type="int" />
+          <Property Name="LastRun" Type="float" />
+          <Property Name="Recurrence" Type="text" />
+          <Property Name="ProcessAll" Type="bit" />
+          <Property Name="ProcessFailedRows" Type="bit" />
+          <Property Name="SkipRowSelection" Type="bit" />
+          <Property Name="BaseTimeStamp" Type="datetime" />
+          <Property Name="ShortDescr" Type="text" />
+        </EntityType>
+        <EntityType Name="DynaUsers">
+          <Key>
+            <PropertyRef Name="UserGUID" />
+          </Key>
+          <Property Name="UserGUID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="128" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="128" />
+          <Property Name="Password" Type="varbinary" MaxLength="256" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="FirstLogin" Type="datetime" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="LogCount" Type="int" />
+          <Property Name="MessengerStatus" Type="int" />
+          <Property Name="Avatar" Type="image" />
+          <Property Name="HiddenUsers" Type="text" />
+          <Property Name="AwayMessages" Type="text" />
+          <Property Name="Version" Type="varchar" MaxLength="50" />
+          <Property Name="FrameworkVersion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="DynacomModelStoreContainer">
+          <EntitySet Name="DynaAutoTasks" EntityType="Self.DynaAutoTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynaUsers" EntityType="Self.DynaUsers" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DynacomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DynaAutoTasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="Guid" Nullable="false" />
+          <Property Name="IsSystem" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RecordHandling" Type="Int32" />
+          <Property Name="AvailableToAutoMan" Type="Boolean" />
+          <Property Name="DataObjectID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Actions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Owner" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Query" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessRecords" Type="Int32" />
+          <Property Name="LastRun" Type="Double" />
+          <Property Name="Recurrence" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessAll" Type="Boolean" />
+          <Property Name="ProcessFailedRows" Type="Boolean" />
+          <Property Name="SkipRowSelection" Type="Boolean" />
+          <Property Name="BaseTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="ShortDescr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DynacomDataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DynaAutoTasks" EntityType="Self.DynaAutoTasks" />
+          <EntitySet Name="DynaUsers" EntityType="DynacomModel.DynaUsers" />
+        </EntityContainer>
+        <EntityType Name="DynaUsers">
+          <Key>
+            <PropertyRef Name="UserGUID" />
+          </Key>
+          <Property Name="UserGUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="Binary" MaxLength="256" FixedLength="false" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="FirstLogin" Type="DateTime" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="LogCount" Type="Int32" />
+          <Property Name="MessengerStatus" Type="Int32" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="HiddenUsers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AwayMessages" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrameworkVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DynacomModelStoreContainer" CdmEntityContainer="DynacomDataContext">
+          <EntitySetMapping Name="DynaAutoTasks">
+            <EntityTypeMapping TypeName="DynacomModel.DynaAutoTasks">
+              <MappingFragment StoreEntitySet="DynaAutoTasks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="RecordHandling" ColumnName="RecordHandling" />
+                <ScalarProperty Name="AvailableToAutoMan" ColumnName="AvailableToAutoMan" />
+                <ScalarProperty Name="DataObjectID" ColumnName="DataObjectID" />
+                <ScalarProperty Name="Actions" ColumnName="Actions" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="ProcessRecords" ColumnName="ProcessRecords" />
+                <ScalarProperty Name="LastRun" ColumnName="LastRun" />
+                <ScalarProperty Name="Recurrence" ColumnName="Recurrence" />
+                <ScalarProperty Name="ProcessAll" ColumnName="ProcessAll" />
+                <ScalarProperty Name="ProcessFailedRows" ColumnName="ProcessFailedRows" />
+                <ScalarProperty Name="SkipRowSelection" ColumnName="SkipRowSelection" />
+                <ScalarProperty Name="BaseTimeStamp" ColumnName="BaseTimeStamp" />
+                <ScalarProperty Name="ShortDescr" ColumnName="ShortDescr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynaUsers">
+            <EntityTypeMapping TypeName="DynacomModel.DynaUsers">
+              <MappingFragment StoreEntitySet="DynaUsers">
+                <ScalarProperty Name="FrameworkVersion" ColumnName="FrameworkVersion" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="AwayMessages" ColumnName="AwayMessages" />
+                <ScalarProperty Name="HiddenUsers" ColumnName="HiddenUsers" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="MessengerStatus" ColumnName="MessengerStatus" />
+                <ScalarProperty Name="LogCount" ColumnName="LogCount" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="FirstLogin" ColumnName="FirstLogin" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserGUID" ColumnName="UserGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
